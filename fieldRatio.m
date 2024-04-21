@@ -12,19 +12,13 @@ function ratio = fieldRatio(HR, LR)
     hr_s = hr_s + 1e-10;
     lr_s = lr_s + 1e-10;
     
-    % Compute the constant c
     c = (lambda_h * a(lambda_h) * lr_s * gamma(1/lambda_l)) ./ (lambda_l * a(lambda_l) * hr_s * gamma(1/lambda_h));
-    % Compute the exponential term
     x = (-((a(lambda_h) * abs(hr_curves))./hr_s).^lambda_h) + ((a(lambda_l) * abs(lr_curves)./lr_s).^lambda_l);
     exp_term = exp(x);
-    
-    % Compute the ratio
-
     ratio = c .* exp_term;
     
 end
 
-% Helper function to compute the scaling factor a(lambda)
 function a_val = a(lambda)
     a_val = sqrt(gamma(3/lambda) / gamma(1/lambda));
 end
